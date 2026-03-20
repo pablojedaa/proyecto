@@ -12,3 +12,7 @@ cursor.execute('''INSERT INTO Marcas (id_marca, nombre, dinero) VALUES(?,?,?)'''
 cursor.execute('''INSERT INTO Marcas (id_marca, nombre, dinero) VALUES(?,?,?)''', (2 ,"Adidas", 50000000))
 cursor.execute('''INSERT INTO Marcas (id_marca, nombre, dinero) VALUES(?,?,?)''', (3 ,"Macron", 14000000))
 
+#insertamos los valores en la tabla jugadores
+cursor.execute('''INSERT INTO Marcas (id_jugador, nombre, edad, id_manager, id_marca) VALUES(?,?,?)''', (1 ,"Joaquín", 44, 1, 1))
+cursor.execute('''INSERT INTO Marcas (id_jugador, nombre, edad, id_manager, id_marca) VALUES(?,?,?)''', (2 ,"Rubén Castro", 44, 2, 3))
+cursor.execute('''INSERT INTO Marcas (id_jugador, nombre, edad, id_manager, id_marca) VALUES(?,?,?)''', (1 ,"Fabián", 29, 3, 2))
