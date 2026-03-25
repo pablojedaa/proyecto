@@ -26,3 +26,27 @@ def eliminar_manager():
     cursor.execute("DELETE FROM Manager WHERE id_manager = ?", (id_manager,))
     conexion.commit()
     print("Manager eliminado.")
+
+def crear_marca():
+    id_marca = input("ID de la marca a crear: ")
+    nombre = input("Nombre de la marca a crear: ")
+    dinero = input("Dinero generado de la marca: ")
+    conexion.commit()
+    print("Marca creada.")
+def seleccionar_marca():
+    cursor.execute("SELECT * FROM Marca")
+    marca = cursor.fetchall()
+    print("\nLista de marca: ")
+    for i in marca:
+        print(i)
+def actualizar_marca():
+    id_marca = input("ID de la marca a actualizar:")
+    nuevo_nombre_marca = input("Nuevo nombre de la marca: ")
+    cursor.execute("UPDATE Marca SET nombre = ? WHERE id_marca = ?", (id_marca, nuevo_nombre_marca, ))
+    conexion.commit()
+    print("Marca actualizada.")
+def eliminar_marca():
+    id_marca = input("ID de la marca a eliminar: ")
+    cursor.execute("DELETE FROM Marca WHERE id_marca = ?", (id_marca,))
+    conexion.commit()
+    print("Marca eliminada.")
