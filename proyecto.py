@@ -26,7 +26,7 @@ def eliminar_manager():
     cursor.execute("DELETE FROM Manager WHERE id_manager = ?", (id_manager,))
     conexion.commit()
     print("Manager eliminado.")
-
+#definimos el CRUD para la tabla marca
 def crear_marca():
     id_marca = input("ID de la marca a crear: ")
     nombre = input("Nombre de la marca a crear: ")
