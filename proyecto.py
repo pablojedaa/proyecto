@@ -76,3 +76,26 @@ def eliminar_jugador():
     cursor.execute("DELETE FROM Jugador WHERE id_jugador = ?", (id_jugador,))
     conexion.commit()
     print("Jugador eliminado.")
+
+def menu():
+    while True:
+        print("n\===MENU PRINCIPAL===")
+        print("1. Crear manager")
+        print("2. Ver manager")
+        print("3. Actualizar manager")
+        print("4. Eliminar manager")
+
+        print("5. Añadir marca")
+        print("6. Ver marca")
+        print("7. Actualizar marca")
+        print("8 ELiminar marca")
+
+        print("9. Crear jugador")
+        print("10. Ver jugador")
+        print("11. Actualizar jugador")
+        print("12. Eliminar jugador")
+
+        print("\n0.Salir")
+
+        opcion_listado=input("Selecciona una opción: ")
+
