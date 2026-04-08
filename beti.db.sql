@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "Marca" (
 	"id_marca"	INTEGER,
 	"nombre"	TEXT NOT NULL,
 	"dinero"	INTEGER NOT NULL,
-	PRIMARY KEY("id_marca")
+	PRIMARY KEY("id_marca" )
 );
 CREATE TABLE IF NOT EXISTS "Jugadores" (
 	"id_jugador"	INTEGER,
