@@ -1,10 +1,9 @@
 #establecemos conexión con la base de datos del betis
 import sqlite3
-conexion = sqlite3.connect('betis.db')
+conexion = sqlite3.connect('betis_final.db')
 cursor = conexion.cursor()
 #definimos el CRUD para la tabla manager
 def crear_manager():
-    id_manager = input("ID del manager a crear: ")
     nombre = input("Nombre del manager a crear: ")
     edad = input("Edad del manager a crear: ")
     conexion.commit()
@@ -28,7 +27,6 @@ def eliminar_manager():
     print("Manager eliminado.")
 #definimos el CRUD para la tabla marca
 def crear_marca():
-    id_marca = input("ID de la marca a crear: ")
     nombre = input("Nombre de la marca a crear: ")
     dinero = input("Dinero generado de la marca: ")
     conexion.commit()
