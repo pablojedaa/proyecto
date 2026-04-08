@@ -1,10 +1,9 @@
 #establecemos conexión con la base de datos del betis
 import sqlite3
-conexion = sqlite3.connect('betis.db')
+conexion = sqlite3.connect('betis_final.db')
 cursor = conexion.cursor()
 #definimos el CRUD para la tabla manager
 def crear_manager():
-    id_manager = input("ID del manager a crear: ")
     nombre = input("Nombre del manager a crear: ")
     edad = input("Edad del manager a crear: ")
     conexion.commit()
@@ -28,7 +27,6 @@ def eliminar_manager():
     print("Manager eliminado.")
 #definimos el CRUD para la tabla marca
 def crear_marca():
-    id_marca = input("ID de la marca a crear: ")
     nombre = input("Nombre de la marca a crear: ")
     dinero = input("Dinero generado de la marca: ")
     conexion.commit()
@@ -50,3 +48,31 @@ def eliminar_marca():
     cursor.execute("DELETE FROM Marca WHERE id_marca = ?", (id_marca,))
     conexion.commit()
     print("Marca eliminada.")
+
+#creamos el CRUD para la tabla jugador con relaciones con las tablas manager y marca.
+def crear_jugador():
+    nombre = input("Nombre del jugador a crear: ")
+    edad = input("Edad del jugador a crear: ")
+    id_manager = input("ID del mager para el jugador a crear: ")
+    id_marca = input("ID de la marca que usará el jugador a crear: ")
+    conexion.commit()
+    print("Jugador creado.")
+def seleccionar_jugador():
+    cursor.execute("SELECT * FROM Jugador")
+    jugador = cursor.fetchall()
+    print("\nLista de jugadores: ")
+    for i in jugador:
+        print(i)
+def actualizar_jugador():
+    id_jugador = input("ID del jugador a actualizar:")
+    nuevo_nombre_jugador = input("Nuevo nombre del jugador: ")
+    nuevo_manager_jugador = input("Nuevo nombre del manager para nuevo jugador: ")
+    nueva_marca_jugador = input("Nueva marca que usará el jugador: ")
+    cursor.execute("UPDATE Jugador SET nombre = ? WHERE id_jugador = ?", (id_jugador, nuevo_nombre_jugador, nuevo_manager_jugador, nueva_marca_jugador, ))
+    conexion.commit()
+    print("Jugador actualizado.")
+def eliminar_jugador():
+    id_jugador = input("ID del jugador a eliminar: ")
+    cursor.execute("DELETE FROM Jugador WHERE id_jugador = ?", (id_jugador,))
+    conexion.commit()
+    print("Jugador eliminado.")
