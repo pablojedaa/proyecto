@@ -154,9 +154,10 @@ def main():
         print("\nPrograma interrumpido por el usuario")
     finally:
         conexion.close()
-        print("Conexion con la base de datos cerrada. Hasta pronto.")
+        print("Conexion " \
+        "con la base de datos cerrada. Hasta pronto.")
 
-if __name__=="_main_":
+if __name__ == "__main__":
     main()
 
 
