@@ -71,8 +71,7 @@ def actualizar_jugador():
     nuevo_nom = input("Nuevo nombre del jugador: ")
     nuevo_man = input("ID del nuevo manager: ")
     nueva_mar = input("ID de la nueva marca: ")
-    cursor.execute("UPDATE Jugador SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", 
-                   (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
+    cursor.execute("UPDATE Jugador SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
     conexion.commit()
     print(f"Jugador ID {id_jugador} actualizado correctamente.")
 def eliminar_jugador():
