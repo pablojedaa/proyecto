@@ -77,6 +77,7 @@ def eliminar_jugador():
     conexion.commit()
     print("Jugador eliminado.")
 
+    
 def menu():
     while True:
         print("n\===MENU PRINCIPAL===")
