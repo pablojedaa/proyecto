@@ -145,7 +145,18 @@ def menu():
         else:
             print("Opción no válida, intenta de nuevo")
         
+#Añadimos, como se menciona anteriormente, y definimos el MAIN para el arranque y detenimiento de el menu
 
+def main():
+    try:
+        menu()
+    except KeyboardInterrupt:
+        print("\nPrograma interrumpido por el usuario")
+    finally:
+        conexion.close()
+        print("Conexion con la base de datos cerrada. Hasta pronto.")
 
+if __name__=="_main_":
+    main()
 
 
