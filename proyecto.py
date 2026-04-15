@@ -100,3 +100,52 @@ def menu():
 
         opcion_listado=input("Selecciona una opción: ")
 
+#Creamos el main para que desde el menú nos lleve a la lista seleccionada según el valor siempre que este sea válido.
+
+        if opcion_listado == 1:
+            crear_manager()
+
+        elif opcion_listado == 2:
+            seleccionar_manager()
+
+        elif opcion_listado == 3:
+            actualizar_manager()
+
+        elif opcion_listado == 4:
+            eliminar_manager()
+
+        elif opcion_listado == 5:
+            crear_marca()
+
+        elif opcion_listado == 6:
+            seleccionar_marca()
+
+        elif opcion_listado == 7:
+            actualizar_marca()
+
+        elif opcion_listado == 8:
+            eliminar_marca()
+
+        elif opcion_listado == 9:
+            crear_jugador()
+
+        elif opcion_listado == 10:
+            seleccionar_jugador()
+
+        elif opcion_listado == 11:
+            actualizar_jugador()
+
+        elif opcion_listado == 12:
+            eliminar_jugador()
+
+        elif opcion_listado == 0:
+            print("Saliendo del programa...")
+            break
+
+        else:
+            print("Opción no válida, intenta de nuevo")
+        
+
+
+
+
