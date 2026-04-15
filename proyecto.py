@@ -79,7 +79,7 @@ def eliminar_jugador():
 
 def menu():
     while True:
-        print("n\===MENU PRINCIPAL===")
+        print("MENU PRINCIPAL")
         print("1. Crear manager")
         print("2. Ver manager")
         print("3. Actualizar manager")
