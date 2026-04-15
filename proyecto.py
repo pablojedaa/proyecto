@@ -6,8 +6,9 @@ cursor = conexion.cursor()
 def crear_manager():
     nombre = input("Nombre del manager a crear: ")
     edad = input("Edad del manager a crear: ")
+    cursor.execute("INSERT INTO Manager (nombre, edad) VALUES (?, ?)", (nombre, edad))
     conexion.commit()
-    print("Manager creado.")
+    print(f"Manager '{nombre}' creado con éxito.")
 def seleccionar_manager():
     cursor.execute("SELECT * FROM Manager")
     manager = cursor.fetchall()
@@ -15,22 +16,23 @@ def seleccionar_manager():
     for i in manager:
         print(i)
 def actualizar_manager():
-    id_manager = input("ID del manager a actualizar:")
-    nuevo_nombre_manager = input("Nuevo nombre del manager: ")
-    cursor.execute("UPDATE Manager SET nombre = ? WHERE id_manager = ?", (id_manager, nuevo_nombre_manager, ))
+    id_manager = input("ID del manager a actualizar: ")
+    nuevo_nombre = input("Nuevo nombre del manager: ")
+    cursor.execute("UPDATE Manager SET nombre = ? WHERE id_manager = ?", (nuevo_nombre, id_manager))
     conexion.commit()
-    print("Manager actualizado.")
+    print(f"Manager ID {id_manager} actualizado a '{nuevo_nombre}'.")
 def eliminar_manager():
     id_manager = input("ID del manager a eliminar: ")
     cursor.execute("DELETE FROM Manager WHERE id_manager = ?", (id_manager,))
     conexion.commit()
-    print("Manager eliminado.")
+    print(f"Manager con ID {id_manager} eliminado de la base de datos.")
 #definimos el CRUD para la tabla marca
 def crear_marca():
     nombre = input("Nombre de la marca a crear: ")
     dinero = input("Dinero generado de la marca: ")
+    cursor.execute("INSERT INTO Marca (nombre, dinero) VALUES (?, ?)", (nombre, dinero))
     conexion.commit()
-    print("Marca creada.")
+    print(f"Marca '{nombre}' creada con éxito.")
 def seleccionar_marca():
     cursor.execute("SELECT * FROM Marca")
     marca = cursor.fetchall()
@@ -38,16 +40,16 @@ def seleccionar_marca():
     for i in marca:
         print(i)
 def actualizar_marca():
-    id_marca = input("ID de la marca a actualizar:")
-    nuevo_nombre_marca = input("Nuevo nombre de la marca: ")
-    cursor.execute("UPDATE Marca SET nombre = ? WHERE id_marca = ?", (id_marca, nuevo_nombre_marca, ))
+    id_marca = input("ID de la marca a actualizar: ")
+    nuevo_nombre = input("Nuevo nombre de la marca: ")
+    cursor.execute("UPDATE Marca SET nombre = ? WHERE id_marca = ?", (nuevo_nombre, id_marca))
     conexion.commit()
-    print("Marca actualizada.")
+    print(f"Marca ID {id_marca} actualizada a '{nuevo_nombre}'.")
 def eliminar_marca():
     id_marca = input("ID de la marca a eliminar: ")
     cursor.execute("DELETE FROM Marca WHERE id_marca = ?", (id_marca,))
     conexion.commit()
-    print("Marca eliminada.")
+    print(f"Marca con ID {id_marca} eliminada de la base de datos.")
 
 #creamos el CRUD para la tabla jugador con relaciones con las tablas manager y marca.
 def crear_jugador():
@@ -55,8 +57,9 @@ def crear_jugador():
     edad = input("Edad del jugador a crear: ")
     id_manager = input("ID del mager para el jugador a crear: ")
     id_marca = input("ID de la marca que usará el jugador a crear: ")
+    cursor.execute("INSERT INTO Jugador (nombre, edad, id_manager, id_marca) VALUES (?, ?, ?, ?)", (nombre, edad, id_manager, id_marca))
     conexion.commit()
-    print("Jugador creado.")
+    print(f"Jugador '{nombre}' creado con éxito.")
 def seleccionar_jugador():
     cursor.execute("SELECT * FROM Jugador")
     jugador = cursor.fetchall()
@@ -64,18 +67,19 @@ def seleccionar_jugador():
     for i in jugador:
         print(i)
 def actualizar_jugador():
-    id_jugador = input("ID del jugador a actualizar:")
-    nuevo_nombre_jugador = input("Nuevo nombre del jugador: ")
-    nuevo_manager_jugador = input("Nuevo nombre del manager para nuevo jugador: ")
-    nueva_marca_jugador = input("Nueva marca que usará el jugador: ")
-    cursor.execute("UPDATE Jugador SET nombre = ? WHERE id_jugador = ?", (id_jugador, nuevo_nombre_jugador, nuevo_manager_jugador, nueva_marca_jugador, ))
+    id_jugador = input("ID del jugador a actualizar: ")
+    nuevo_nom = input("Nuevo nombre del jugador: ")
+    nuevo_man = input("ID del nuevo manager: ")
+    nueva_mar = input("ID de la nueva marca: ")
+    cursor.execute("UPDATE Jugador SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", 
+                   (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
     conexion.commit()
-    print("Jugador actualizado.")
+    print(f"Jugador ID {id_jugador} actualizado correctamente.")
 def eliminar_jugador():
     id_jugador = input("ID del jugador a eliminar: ")
     cursor.execute("DELETE FROM Jugador WHERE id_jugador = ?", (id_jugador,))
     conexion.commit()
-    print("Jugador eliminado.")
+    print(f"Jugador con ID {id_jugador} eliminado de la base de datos.")
 
     
 def menu():
@@ -102,43 +106,43 @@ def menu():
 
 #Creamos el main para que desde el menú nos lleve a la lista seleccionada según el valor siempre que este sea válido.
 
-        if opcion_listado == 1:
+        if opcion_listado == "1":
             crear_manager()
 
-        elif opcion_listado == 2:
+        elif opcion_listado == "2":
             seleccionar_manager()
 
-        elif opcion_listado == 3:
+        elif opcion_listado == "3":
             actualizar_manager()
 
-        elif opcion_listado == 4:
+        elif opcion_listado == "4":
             eliminar_manager()
 
-        elif opcion_listado == 5:
+        elif opcion_listado == "5":
             crear_marca()
 
-        elif opcion_listado == 6:
+        elif opcion_listado == "6":
             seleccionar_marca()
 
-        elif opcion_listado == 7:
+        elif opcion_listado == "7":
             actualizar_marca()
 
-        elif opcion_listado == 8:
+        elif opcion_listado == "8":
             eliminar_marca()
 
-        elif opcion_listado == 9:
+        elif opcion_listado == "9":
             crear_jugador()
 
-        elif opcion_listado == 10:
+        elif opcion_listado == "10":
             seleccionar_jugador()
 
-        elif opcion_listado == 11:
+        elif opcion_listado == "11":
             actualizar_jugador()
 
-        elif opcion_listado == 12:
+        elif opcion_listado == "12":
             eliminar_jugador()
 
-        elif opcion_listado == 0:
+        elif opcion_listado == "0":
             print("Saliendo del programa...")
             break
 
