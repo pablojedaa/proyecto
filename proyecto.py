@@ -55,13 +55,13 @@ def eliminar_marca():
 def crear_jugador():
     nombre = input("Nombre del jugador a crear: ")
     edad = input("Edad del jugador a crear: ")
-    id_manager = input("ID del mager para el jugador a crear: ")
+    id_manager = input("ID del manager para el jugador a crear: ")
     id_marca = input("ID de la marca que usará el jugador a crear: ")
-    cursor.execute("INSERT INTO Jugador (nombre, edad, id_manager, id_marca) VALUES (?, ?, ?, ?)", (nombre, edad, id_manager, id_marca))
+    cursor.execute("INSERT INTO Jugadores (nombre, edad, id_manager, id_marca) VALUES (?, ?, ?, ?)", (nombre, edad, id_manager, id_marca))
     conexion.commit()
     print(f"Jugador '{nombre}' creado con éxito.")
 def seleccionar_jugador():
-    cursor.execute("SELECT * FROM Jugador")
+    cursor.execute("SELECT * FROM Jugadores")
     jugador = cursor.fetchall()
     print("\nLista de jugadores: ")
     for i in jugador:
@@ -71,12 +71,12 @@ def actualizar_jugador():
     nuevo_nom = input("Nuevo nombre del jugador: ")
     nuevo_man = input("ID del nuevo manager: ")
     nueva_mar = input("ID de la nueva marca: ")
-    cursor.execute("UPDATE Jugador SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
+    cursor.execute("UPDATE Jugadores SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
     conexion.commit()
     print(f"Jugador ID {id_jugador} actualizado correctamente.")
 def eliminar_jugador():
     id_jugador = input("ID del jugador a eliminar: ")
-    cursor.execute("DELETE FROM Jugador WHERE id_jugador = ?", (id_jugador,))
+    cursor.execute("DELETE FROM Jugadores WHERE id_jugador = ?", (id_jugador,))
     conexion.commit()
     print(f"Jugador con ID {id_jugador} eliminado de la base de datos.")
 
