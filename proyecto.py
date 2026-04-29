@@ -1,86 +1,182 @@
 #establecemos conexión con la base de datos del betis
+
 import sqlite3
-conexion = sqlite3.connect('betis_final.db')
-cursor = conexion.cursor()
+
 #definimos el CRUD para la tabla manager
+
 def crear_manager():
-    nombre = input("Nombre del manager a crear: ")
-    edad = input("Edad del manager a crear: ")
-    cursor.execute("INSERT INTO Manager (nombre, edad) VALUES (?, ?)", (nombre, edad))
-    conexion.commit()
-    print(f"Manager '{nombre}' creado con éxito.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        nombre = input("Nombre del manager a crear: ")
+        edad = input("Edad del manager a crear: ")
+        cursor.execute("INSERT INTO Manager (nombre, edad) VALUES (?, ?)", (nombre, edad))
+        conexion.commit()
+        print(f"Manager '{nombre}' creado con éxito.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()       
+
 def seleccionar_manager():
-    cursor.execute("SELECT * FROM Manager")
-    manager = cursor.fetchall()
-    print("\nLista de managers: ")
-    for i in manager:
-        print(i)
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM Manager")
+        manager = cursor.fetchall()
+        print("\nLista de managers: ")
+        for i in manager:
+            print(i)
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+    
 def actualizar_manager():
-    id_manager = input("ID del manager a actualizar: ")
-    nuevo_nombre = input("Nuevo nombre del manager: ")
-    cursor.execute("UPDATE Manager SET nombre = ? WHERE id_manager = ?", (nuevo_nombre, id_manager))
-    conexion.commit()
-    print(f"Manager ID {id_manager} actualizado a '{nuevo_nombre}'.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_manager = input("ID del manager a actualizar: ")
+        nuevo_nombre = input("Nuevo nombre del manager: ")
+        cursor.execute("UPDATE Manager SET nombre = ? WHERE id_manager = ?", (nuevo_nombre, id_manager))
+        conexion.commit()
+        print(f"Manager ID {id_manager} actualizado a '{nuevo_nombre}'.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
 def eliminar_manager():
-    id_manager = input("ID del manager a eliminar: ")
-    cursor.execute("DELETE FROM Manager WHERE id_manager = ?", (id_manager,))
-    conexion.commit()
-    print(f"Manager con ID {id_manager} eliminado de la base de datos.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_manager = input("ID del manager a eliminar: ")
+        cursor.execute("DELETE FROM Manager WHERE id_manager = ?", (id_manager,))
+        conexion.commit()
+        print(f"Manager con ID {id_manager} eliminado de la base de datos.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
 #definimos el CRUD para la tabla marca
+
 def crear_marca():
-    nombre = input("Nombre de la marca a crear: ")
-    dinero = input("Dinero generado de la marca: ")
-    cursor.execute("INSERT INTO Marca (nombre, dinero) VALUES (?, ?)", (nombre, dinero))
-    conexion.commit()
-    print(f"Marca '{nombre}' creada con éxito.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        nombre = input("Nombre de la marca a crear: ")
+        dinero = input("Dinero generado de la marca: ")
+        cursor.execute("INSERT INTO Marca (nombre, dinero) VALUES (?, ?)", (nombre, dinero))
+        conexion.commit()
+        print(f"Marca '{nombre}' creada con éxito.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
 def seleccionar_marca():
-    cursor.execute("SELECT * FROM Marca")
-    marca = cursor.fetchall()
-    print("\nLista de marca: ")
-    for i in marca:
-        print(i)
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM Marca")
+        marca = cursor.fetchall()
+        print("\nLista de marca: ")
+        for i in marca:
+            print(i)
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
 def actualizar_marca():
-    id_marca = input("ID de la marca a actualizar: ")
-    nuevo_nombre = input("Nuevo nombre de la marca: ")
-    cursor.execute("UPDATE Marca SET nombre = ? WHERE id_marca = ?", (nuevo_nombre, id_marca))
-    conexion.commit()
-    print(f"Marca ID {id_marca} actualizada a '{nuevo_nombre}'.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_marca = input("ID de la marca a actualizar: ")
+        nuevo_nombre = input("Nuevo nombre de la marca: ")
+        cursor.execute("UPDATE Marca SET nombre = ? WHERE id_marca = ?", (nuevo_nombre, id_marca))
+        conexion.commit()
+        print(f"Marca ID {id_marca} actualizada a '{nuevo_nombre}'.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
 def eliminar_marca():
-    id_marca = input("ID de la marca a eliminar: ")
-    cursor.execute("DELETE FROM Marca WHERE id_marca = ?", (id_marca,))
-    conexion.commit()
-    print(f"Marca con ID {id_marca} eliminada de la base de datos.")
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_marca = input("ID de la marca a eliminar: ")
+        cursor.execute("DELETE FROM Marca WHERE id_marca = ?", (id_marca,))
+        conexion.commit()
+        print(f"Marca con ID {id_marca} eliminada de la base de datos.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
 
 #creamos el CRUD para la tabla jugador con relaciones con las tablas manager y marca.
-def crear_jugador():
-    nombre = input("Nombre del jugador a crear: ")
-    edad = input("Edad del jugador a crear: ")
-    id_manager = input("ID del manager para el jugador a crear: ")
-    id_marca = input("ID de la marca que usará el jugador a crear: ")
-    cursor.execute("INSERT INTO Jugadores (nombre, edad, id_manager, id_marca) VALUES (?, ?, ?, ?)", (nombre, edad, id_manager, id_marca))
-    conexion.commit()
-    print(f"Jugador '{nombre}' creado con éxito.")
-def seleccionar_jugador():
-    cursor.execute("SELECT * FROM Jugadores")
-    jugador = cursor.fetchall()
-    print("\nLista de jugadores: ")
-    for i in jugador:
-        print(i)
-def actualizar_jugador():
-    id_jugador = input("ID del jugador a actualizar: ")
-    nuevo_nom = input("Nuevo nombre del jugador: ")
-    nuevo_man = input("ID del nuevo manager: ")
-    nueva_mar = input("ID de la nueva marca: ")
-    cursor.execute("UPDATE Jugadores SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
-    conexion.commit()
-    print(f"Jugador ID {id_jugador} actualizado correctamente.")
-def eliminar_jugador():
-    id_jugador = input("ID del jugador a eliminar: ")
-    cursor.execute("DELETE FROM Jugadores WHERE id_jugador = ?", (id_jugador,))
-    conexion.commit()
-    print(f"Jugador con ID {id_jugador} eliminado de la base de datos.")
 
+def crear_jugador():
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        nombre = input("Nombre del jugador a crear: ")
+        edad = input("Edad del jugador a crear: ")
+        id_manager = input("ID del manager para el jugador a crear: ")
+        id_marca = input("ID de la marca que usará el jugador a crear: ")
+        cursor.execute("INSERT INTO Jugadores (nombre, edad, id_manager, id_marca) VALUES (?, ?, ?, ?)", (nombre, edad, id_manager, id_marca))
+        conexion.commit()
+        print(f"Jugador '{nombre}' creado con éxito.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
     
+def seleccionar_jugador():
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM Jugadores")
+        jugador = cursor.fetchall()
+        print("\nLista de jugadores: ")
+        for i in jugador:
+            print(i)
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
+def actualizar_jugador():
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_jugador = input("ID del jugador a actualizar: ")
+        nuevo_nom = input("Nuevo nombre del jugador: ")
+        nuevo_man = input("ID del nuevo manager: ")
+        nueva_mar = input("ID de la nueva marca: ")
+        cursor.execute("UPDATE Jugadores SET nombre = ?, id_manager = ?, id_marca = ? WHERE id_jugador = ?", (nuevo_nom, nuevo_man, nueva_mar, id_jugador))
+        conexion.commit()
+        print(f"Jugador ID {id_jugador} actualizado correctamente.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+
+def eliminar_jugador():
+    try:
+        conexion = sqlite3.connect('betis_final.db')
+        cursor = conexion.cursor()
+        id_jugador = input("ID del jugador a eliminar: ")
+        cursor.execute("DELETE FROM Jugadores WHERE id_jugador = ?", (id_jugador,))
+        conexion.commit()
+        print(f"Jugador con ID {id_jugador} eliminado de la base de datos.")
+    except sqlite3.DatabaseError:
+        print("\nError, programa interrumpido")
+    finally:
+        conexion.close()    
+        
 def menu():
     while True:
         print("MENU PRINCIPAL")
@@ -151,14 +247,8 @@ def menu():
 #Añadimos, como se menciona anteriormente, y definimos el MAIN para el arranque y detenimiento de el menu
 
 def main():
-    try:
-        menu()
-    except KeyboardInterrupt:
-        print("\nPrograma interrumpido por el usuario")
-    finally:
-        conexion.close()
-        print("Conexion " \
-        "con la base de datos cerrada. Hasta pronto.")
+    menu()
+
 
 if __name__ == "__main__":
     main()
